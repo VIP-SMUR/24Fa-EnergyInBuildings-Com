@@ -123,3 +123,43 @@ print(model_params)
 # save the model to disk
 filename = 'finalized_model_multivariate.sav'
 dump(model_RF, open(filename, 'wb'))
+
+from joblib import dump
+
+# Save the scikit-learn model to disk
+filename = 'finalized_model_multivariate.joblib'
+filename_scaler = 'scaler.joblib'
+dump(model_RF, filename)
+dump(scaler, filename_scaler)
+
+from joblib import load
+
+# Load the scikit-learn model from disk
+filename = 'finalized_model_multivariate.joblib'
+filename_scaler = 'scaler.joblib'
+model_RF = load(filename)
+scaler = load(filename_scaler)
+
+# Define the input data as a dictionary
+input_data = {
+    'Relative Compactness': [0.98],
+    'Surface Area': [600],
+    'Roof Area': [120],
+    'Overall Height': [20],
+    'Orientation':  [135],
+    'Glazing Area':  [23],
+    'Glazing Area Distribution': [7]
+}
+
+# Create a DataFrame
+X_new = pd.DataFrame(input_data)
+
+# Apply the scaler to the input data
+X_new_scaled = scaler.transform(X_new)
+X_new_scaled
+
+# Make predictions
+predictions = model_RF.predict(X_new_scaled)
+
+# Print the prediction
+print('Predicted heating load:', round(predictions[0],1), "kWh")
