@@ -5,7 +5,6 @@ import Previewer from './components/Previewer';
 import RunButton from './components/RunButton';
 import styles from './components/Home.module.css';
 
-// Updated FormData Interface with new variables
 interface FormData {
   state: string;
   buildingUse: string;
@@ -19,7 +18,6 @@ interface FormData {
 }
 
 export default function Home() {
-  // Initializing form data with new fields
   const [formData, setFormData] = useState<FormData>({
     state: 'Georgia',
     buildingUse: 'Office',
@@ -113,7 +111,7 @@ export default function Home() {
 
         <div className={styles.previewSection}>
           <Previewer />
-          <RunButton onClick={() => console.log('Run')} />
+          <RunButton formData={formData} />
         </div>
       </div>
     </div>
