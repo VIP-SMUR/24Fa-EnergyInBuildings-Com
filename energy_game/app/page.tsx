@@ -5,34 +5,31 @@ import Previewer from './components/Previewer';
 import RunButton from './components/RunButton';
 import styles from './components/Home.module.css';
 
-
+// Updated FormData Interface with new variables
 interface FormData {
   state: string;
   buildingUse: string;
-  buildingShape: string;
-  buildingAge: string;
-  squareFootage: string;
-  ceilingHeight: string;
-  wallArea: string;
-  wwr: string;
+  relativeCompactness: string;
+  surfaceArea: string;
+  roofArea: string;
+  overallHeight: string;
   orientation: string;
-  energyCode: string;
-  hvacCategory: string;
+  glazingArea: string;
+  glazingAreaDistribution: string;
 }
 
 export default function Home() {
+  // Initializing form data with new fields
   const [formData, setFormData] = useState<FormData>({
     state: 'Georgia',
     buildingUse: 'Office',
-    buildingShape: '',
-    buildingAge: '',
-    squareFootage: '',
-    ceilingHeight: '',
-    wallArea: '',
-    wwr: '',
+    relativeCompactness: '',
+    surfaceArea: '',
+    roofArea: '',
+    overallHeight: '',
     orientation: '',
-    energyCode: '',
-    hvacCategory: '',
+    glazingArea: '',
+    glazingAreaDistribution: '',
   });
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -61,7 +58,7 @@ export default function Home() {
             readOnly
           />
           <FormInput
-            label="What this building used for?"
+            label="What is this building used for?"
             name="buildingUse"
             value={formData.buildingUse}
             onChange={handleChange}
@@ -71,39 +68,27 @@ export default function Home() {
           <h3>Detailed settings</h3>
 
           <FormInput
-            label="Building Shape:"
-            name="buildingShape"
-            value={formData.buildingShape}
+            label="Relative Compactness:"
+            name="relativeCompactness"
+            value={formData.relativeCompactness}
             onChange={handleChange}
           />
           <FormInput
-            label="Building Age:"
-            name="buildingAge"
-            value={formData.buildingAge}
+            label="Surface Area:"
+            name="surfaceArea"
+            value={formData.surfaceArea}
             onChange={handleChange}
           />
           <FormInput
-            label="Square Footage:"
-            name="squareFootage"
-            value={formData.squareFootage}
+            label="Roof Area:"
+            name="roofArea"
+            value={formData.roofArea}
             onChange={handleChange}
           />
           <FormInput
-            label="Ceiling Height:"
-            name="ceilingHeight"
-            value={formData.ceilingHeight}
-            onChange={handleChange}
-          />
-          <FormInput
-            label="Wall Area:"
-            name="wallArea"
-            value={formData.wallArea}
-            onChange={handleChange}
-          />
-          <FormInput
-            label="WWR (Window to Wall Ratio):"
-            name="wwr"
-            value={formData.wwr}
+            label="Overall Height:"
+            name="overallHeight"
+            value={formData.overallHeight}
             onChange={handleChange}
           />
           <FormInput
@@ -113,15 +98,15 @@ export default function Home() {
             onChange={handleChange}
           />
           <FormInput
-            label="Energy Code:"
-            name="energyCode"
-            value={formData.energyCode}
+            label="Glazing Area:"
+            name="glazingArea"
+            value={formData.glazingArea}
             onChange={handleChange}
           />
           <FormInput
-            label="HVAC Category:"
-            name="hvacCategory"
-            value={formData.hvacCategory}
+            label="Glazing Area Distribution:"
+            name="glazingAreaDistribution"
+            value={formData.glazingAreaDistribution}
             onChange={handleChange}
           />
         </form>
